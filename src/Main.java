@@ -411,6 +411,7 @@ public class Main {
                break;
             case 4:
                // hiển thị 10 bài hát gần nhất
+               printTenSong();
                break;
             case 5:
                // out
@@ -442,18 +443,47 @@ public class Main {
                }
             }
          }
-
+         if (!found) {
+            System.err.println("Không có bài hát nào");
+         }
       }
    }
 
    // search bài hát qua tên hoặc thể loại
    public static void search2() {
-
+      System.out.print("Nhập vào từ bạn muốn tìm: ");
+      String text = ConfigScanner.scanner().nextLine();
+      text.toLowerCase();
+      boolean found = false;
+      if (text.equals("")) {
+         System.err.println("Nhập không hợp lệ");
+      } else {
+         for (Song song : songController.getAll()) {
+            if (song != null) {
+               if (song.getSongName().toLowerCase().contains(text) || song.getSinger().getGenre().toLowerCase().contains(text)) {
+                  System.out.println(song);
+                  found = true;
+               }
+            }
+         }
+         if (!found) {
+            System.err.println("Không có bài hát nào");
+         }
+      }
    }
 
    // sort song
    public static void sortSong() {
-
+      songController.sortSong();
+      showListSong();
    }
 
+   // print song 10 mới nhất
+   public static void printTenSong() {
+      songController.sortNguoc();
+      Song[] list = songController.getAll();
+      for (int i = 0; i < 10; i++) {
+         System.out.println(list[i]);
+      }
+   }
 }

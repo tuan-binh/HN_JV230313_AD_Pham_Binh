@@ -93,4 +93,42 @@ public class SongService {
       }
       return null;
    }
+
+   // sort bài hát theo thứ tự id
+   public void sortSong() {
+      for (int i = 0; i < listSong.length; i++) {
+         if(listSong[i] != null) {
+            int idI = Integer.parseInt(listSong[i].getSongId().replace("S", "0"));
+            for (int j = i + 1; j < listSong.length; j++) {
+               if(listSong[j] != null) {
+                  int idJ = Integer.parseInt(listSong[j].getSongId().replace("S", "0"));
+                  if (idI > idJ) {
+                     Song temp = listSong[i];
+                     listSong[i] = listSong[j];
+                     listSong[j] = temp;
+                  }
+               }
+            }
+         }
+      }
+   }
+
+   // sort ngược để lấy 10 bài mới nhất theo id
+   public void sortNguoc() {
+      for (int i = 0; i < listSong.length; i++) {
+         if(listSong[i] != null) {
+            int idI = Integer.parseInt(listSong[i].getSongId().replace("S", "0"));
+            for (int j = i + 1; j < listSong.length; j++) {
+               if(listSong[j] != null) {
+                  int idJ = Integer.parseInt(listSong[j].getSongId().replace("S", "0"));
+                  if (idI < idJ) {
+                     Song temp = listSong[i];
+                     listSong[i] = listSong[j];
+                     listSong[j] = temp;
+                  }
+               }
+            }
+         }
+      }
+   }
 }

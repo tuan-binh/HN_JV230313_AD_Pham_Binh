@@ -30,4 +30,12 @@ public class SongController {
    public Song findById(String id) {
       return songService.findById(id);
    }
+
+   public void sortSong() {
+      songService.sortSong();
+   }
+
+   public void sortNguoc() {
+      songService.sortNguoc();
+   }
 }
