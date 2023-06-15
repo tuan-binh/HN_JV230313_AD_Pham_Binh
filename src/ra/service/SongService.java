@@ -34,7 +34,7 @@ public class SongService {
          System.out.println("~~ Thêm thành công ~~");
       } else {
          for (int i = 0; i < listSong.length; i++) {
-            if (listSong[i].getSongId().equals(song.getSongId())) {
+            if (listSong[i] != null && listSong[i].getSongId().equals(song.getSongId())) {
                listSong[i] = song;
                break;
             }
